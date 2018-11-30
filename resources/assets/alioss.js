@@ -106,33 +106,42 @@
                     uploader.start();//选择文件后立即上传
                 },
                 BeforeUpload: function(up, file) {
+                    if(multi) {
+                        // 多图
+                        $('#' + id + '_container').append('<div id="'+file.id+'" class="show_upload_pic_item"><div class="alioss_percent">0%</div></div>');
+                    }else{
+                        // 单图
+                        browse_button.parent().append('<div id="'+file.id+'"><div class="alioss_percent">0%</div></div>');
+                    }
                     file_ext = get_suffix(file.name); //后缀名
                     filename_new = Date.parse(new Date()) / 1000 + '_' + random_string(10) + file_ext;
                     set_upload_param(up, filename_new); //重设参数
                 },
                 UploadProgress: function(up, file) {
-                    //$('#'+file.id).find('span').html(file.percent+'%');
+                    $('#'+file.id).find('.alioss_percent').html(file.percent+'%');
                 },
                 FileUploaded: function(up, file, info) {
                     var path = key+filename_new;
                     var src = oss_url + '/' + path +'?x-oss-process=image/resize,m_fill,h_100,w_100';
                     if(multi) {
-                        $('#' + id + '_container').append([
-                            '<div class="show_upload_pic_item">',
+                        // 多图
+                        $('#' + file.id).html([
                             '<img src="'+src+'" style="margin-bottom: 3px">',
                             '<div class="operat_warp" style="display: inline-block">',
                             '<input type="hidden" name="'+id+'[]" value="'+path+'" />',
                             '<a href="'+oss_url + '/' + path+'" target="_blank">预览</a> / ',
                             '<a href="javascript:void(0);" onclick="alioss_del_file(this,1)" data-filename="'+path+'">删除</a>',
-                            '</div></div>'
+                            '</div>'
                         ].join(''));
                     }else{
+                        // 单图
                         browse_button.attr('src',src);
                         var operat_warp = browse_button.parents('.show_upload_pic_item').find('.operat_warp');
                         var a_s = operat_warp.find('a');
                         a_s.eq(0).attr('href',oss_url + '/' + path);
                         a_s.eq(1).attr('data-filename',path);
                         operat_warp.show().find('input').val(path);
+                        $('#'+file.id).remove();
                     }
                 },
                 UploadComplete: function(up, files) {
