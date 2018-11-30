@@ -11,7 +11,7 @@
                 <img data-multi="" id="{{$id}}_alioss_upload" class="Js_alioss_btn" src="{{$resize_path ? $resize_path : '/vendor/laravel-admin-ext/alioss-upload/pic_add.png'}}">
                 <div class="operat_warp" @if(old($id, $value)) style="display: inline-block;" @endif>
                     <input type="hidden" name="{{$id}}" value="{{old($id, $value)}}">
-                    <a href="$all_path" target="_blank">预览</a> / <a href="javascript:void(0);" @if(old($id, $value)) data-filename="{{old($id, $value)}}" @endif onclick="alioss_del_file(this,0)">删除</a>
+                    <a href="{{$all_path}}" target="_blank">预览</a> / <a href="javascript:void(0);" @if(old($id, $value)) data-filename="{{old($id, $value)}}" @endif onclick="alioss_del_file(this,0)">删除</a>
                 </div>
                 <div id="{{$id}}_container"></div>
             </div>
