@@ -1,0 +1,15 @@
+.show_upload_pic{
+    margin-top: 5px;
+    border-left: 5px solid #CCCCCC;
+}
+.show_upload_pic_item{
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+    overflow: hidden;
+    float: left;
+}
+.operat_warp{display: none}
+.show_upload_pic_item > img{cursor: pointer}
+.show_upload_pic_item .Js_alioss_btn{margin-bottom: 3px;border: 1px solid #CCCCCC;box-sizing: border-box;width: 98px}
+.show_upload_pic .show_upload_pic_item > img{cursor: move;}

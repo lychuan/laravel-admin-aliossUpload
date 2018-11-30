@@ -1,0 +1,35 @@
+{
+    "name": "airan/alioss-upload",
+    "description": "扩展laravel-admin的form表单，使其可以使用web直传阿里OSS",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension", "alioss"],
+    "homepage": "https://github.com/airan587/laravel-admin-aliossUpload.git",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "airan",
+            "email": "airan587@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "aliyuncs/oss-sdk-php": "~2.0",
+        "encore/laravel-admin": "~1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Encore\\AliOssUpload\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Encore\\AliOssUpload\\AliOssUploadServiceProvider"
+            ]
+
+        }
+    }
+}
