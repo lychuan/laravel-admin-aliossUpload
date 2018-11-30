@@ -2,6 +2,9 @@ alioss-upload extension  for laravel-admin
 ======
 扩展laravel-admin的表单，实现web直传阿里OSS
 
+## 截图  
+![laravel-admin-aliossUpload](https://github.com/airan587/laravel-admin-aliossUpload/blob/master/1.png)
+
 ## 安装
 ```
 composer require airan/alioss-upload
