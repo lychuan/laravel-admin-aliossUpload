@@ -167,7 +167,10 @@
             // 单图
             var show_upload_pic_item = $(obj).attr('data-filename','').parents('.show_upload_pic_item');
             show_upload_pic_item.find('img.Js_alioss_btn').attr('src','/vendor/laravel-admin-ext/alioss-upload/pic_add.png');
-            show_upload_pic_item.find('.operat_warp').hide();
+            var operat_warp = show_upload_pic_item.find('.operat_warp').hide();
+            operat_warp.find('input').val('');
+            operat_warp.find('a:eq(0)').attr('href','');
+            operat_warp.find('a:eq(2)').attr('data-filename','');
         }
         $.get('/admin/alioss-upload_del/?path='+path,function(re){
             console.log(re);
