@@ -16,7 +16,7 @@
 // 文件上传
 (function(){
     //------------ 阿里云OSS start ------------
-    var accessid = '', host = '', policyBase64 = '', signature = '', key = '', expire = 0, filename_new = '', file_ext = '', oss_url= '';
+    var callbackbody = '',accessid = '', host = '', policyBase64 = '', signature = '', key = '', expire = 0, filename_new = '', file_ext = '', oss_url= '';
 
     //获取签名函数
     function get_signature(data_time,data_sig) {
@@ -35,6 +35,7 @@
                     oss_url = obj['oss_url'];
                     policyBase64 = obj['policy'];
                     signature = obj['signature'];
+                    callbackbody = obj['callbackbody'];
                     expire = parseInt(obj['expire']);
                     key = obj['dir'];
                 },
@@ -52,6 +53,7 @@
             'policy': policyBase64,
             'OSSAccessKeyId': accessid,
             'success_action_status': '200',//让服务端返回200, 默认204
+            'callback' : callbackbody,
             'signature': signature,
         };
         up.setOption({
@@ -159,7 +161,7 @@
 
 
     // 删除文件
-    window.alioss_del_file = function(obj,type) {
+    window.alioss_del_file = function(obj,type,edit) {
         var path = $(obj).attr('data-filename');
         if(type){ // 多图
             $(obj).parents('.show_upload_pic_item').remove();
@@ -172,8 +174,9 @@
             operat_warp.find('a:eq(0)').attr('href','');
             operat_warp.find('a:eq(2)').attr('data-filename','');
         }
-        $.get('/admin/alioss-upload_del/?path='+path,function(re){
-            console.log(re);
-        },'json');
+        if(!edit){
+            $.get('/admin/alioss-upload_del/?path='+path);
+        }
+        
     };
 })();

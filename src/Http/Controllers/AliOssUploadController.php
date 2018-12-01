@@ -3,6 +3,7 @@
 namespace Encore\AliOssUpload\Http\Controllers;
 use OSS\OssClient; //阿里云OSS SDK
 use OSS\Core\OssException;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class AliOssUploadController extends Controller
@@ -68,6 +69,12 @@ class AliOssUploadController extends Controller
         return json_encode(["data"=>'ok']);
     }
 
+
+    // ckeditor上传
+    public function ckeditor()
+    {
+        return view('alioss-upload::ckeditor');
+    }
 
     /**
      * gmt时间格式转换
