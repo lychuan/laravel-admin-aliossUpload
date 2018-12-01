@@ -20,19 +20,21 @@
             <div class="box box-widget">
                 <!-- /.box-header -->
                 <div id="{{$id}}_container" class="box-body show_upload_pic">
+                    @if(old($id, $value))
                     @foreach(explode(',', old($id, $value)) as $p)
-                    <?php
-                        $all_path =  config('admin.extensions.alioss-upload.OSS_URL') . '/' . $p;
-                        $resize_path = $all_path . '?x-oss-process=image/resize,m_fill,h_100,w_100';
-                    ?>
-                    <div class="show_upload_pic_item">
-                        <img src="{{$resize_path}}" style="margin-bottom: 3px">
-                        <div class="operat_warp" style="display: inline-block">
-                            <input type="hidden" name="{{$id}}[]" value="{{$p}}">
-                            <a href="{{$all_path}}" target="_blank">预览</a> / <a href="javascript:void(0);" onclick="alioss_del_file(this,1)" data-filename="{{$p}}">删除</a>
+                        <?php
+                            $all_path =  config('admin.extensions.alioss-upload.OSS_URL') . '/' . $p;
+                            $resize_path = $all_path . '?x-oss-process=image/resize,m_fill,h_100,w_100';
+                        ?>
+                        <div class="show_upload_pic_item">
+                            <img src="{{$resize_path}}" style="margin-bottom: 3px">
+                            <div class="operat_warp" style="display: inline-block">
+                                <input type="hidden" name="{{$id}}[]" value="{{$p}}">
+                                <a href="{{$all_path}}" target="_blank">预览</a> / <a href="javascript:void(0);" onclick="alioss_del_file(this,1)" data-filename="{{$p}}">删除</a>
+                            </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 <!-- /.box-body -->
             </div>
