@@ -26,7 +26,7 @@
                 <!-- /.box-header -->
                 <div id="{{$id}}_container" class="box-body show_upload_pic">
                     @if(old($id, $value))
-                    @foreach(explode(',', old($id, $value)) as $p)
+                    @foreach(old($id, $value) as $p)
                         <?php
                             $all_path =  config('admin.extensions.alioss-upload.OSS_URL') . '/' . $p;
                             $resize_path = $all_path . '?x-oss-process=image/resize,m_fill,h_100,w_100';
