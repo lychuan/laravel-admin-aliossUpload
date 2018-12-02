@@ -1,18 +1,3 @@
-(function(){
-    // 多图可拖动排序
-    var els = document.querySelectorAll('.show_upload_pic');
-    for(var i = 0, len = els.length; i < len; i++) {
-        Sortable.create(els[i],{
-            animation: 150,
-            group: {
-                pull: false,
-                put: false,
-            },
-            handle: 'img'
-        });
-    }
-})();
-
 // 文件上传
 (function(){
     //------------ 阿里云OSS start ------------
@@ -87,6 +72,11 @@
         var browse_button = $('#'+id+'_alioss_upload');
         var multi = Boolean(browse_button.attr('data-multi'));
         var container = document.getElementById(id + '_container');
+        if(multi){
+            // 多图可拖动
+            Sortable.create(container,{animation: 150,group: {pull: false, put: false,},handle: 'img'});
+
+        }
         var uploader = new plupload.Uploader({
             runtimes : 'html5,flash,silverlight,html4',
             browse_button : browse_button.attr('id'),//'pickfiles',
